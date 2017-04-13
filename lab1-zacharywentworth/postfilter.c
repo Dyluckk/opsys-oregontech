@@ -1,48 +1,27 @@
 #include <stdio.h>
 #include <string.h>
-#include <sys/types.h> 
-#include <unistd.h>
-
-#define MAX_BUFFER 128
-
-int main (int argc, char *argv[])
+int main(int argc, char * argv[])
 {
-        //the filter char is located in argv[1]
-        //check if an argument was passed
-        int acceptArg = 0;
-        char userInput[128];
-        char filterOn = NULL;
+    if(argc >= 2) {
+        char string[256];
+        while(fgets(string, sizeof(string), stdin) != NULL) {
+            char * pch = strrchr(string, *argv[1]);//use this one to get the other end of string
 
-        if(argc != 2) {
-            acceptArg = 0;   
-        } 
-        else {
-            filterOn = *argv[1];
-            acceptArg = 1;
-        }     
-
-        //no arguement was passed
-        if(acceptArg == 0) {
-            fprintf(stderr, "You must provide an argument to filter on\n");
-            return 1;
-        }
-        else { 
-            while ( fgets(userInput, sizeof(userInput), stdin) != NULL ) {
-                char *ret;
-                //find last occurence of filter character
-                ret = strrchr(userInput, filterOn);
-        
-                if(ret != NULL) {
-                    //retain up to filter character 
-                    *(ret + 1) = 0;
-                    fprintf(stderr, "%d pre %d: %s\n", getpid(), filterOn, userInput);
-                    fprintf(stdout, "%s\n", userInput);
-                } 
-                else {
-                    fprintf(stderr, "%d rest: %s\n", getpid(), userInput);
-                }
+            fprintf(stderr, "%d post %s: %s", getpid(), argv[1], string);
+            if(pch != NULL) {
+                pch++;//increment
+                *pch = 0;//set it to null
+                fprintf(stderr, "%d rest %s: %s\n", getpid(), argv[1], string);
+                fprintf(stdout, "%s\n", string);
             }
-        }    
-
-        return 0;
+            else {
+                fprintf(stderr, "%d rest %s: \n", getpid(), argv[1]);
+            }
+        }
+    }
+    else {
+        fprintf(stderr, "Not enough arguements\n");
+    }
+    return 0;
 }
+

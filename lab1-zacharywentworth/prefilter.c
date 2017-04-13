@@ -1,45 +1,30 @@
 #include <stdio.h>
 #include <string.h>
-#include <sys/types.h> 
-#include <unistd.h>
-
-#define MAX_BUFFER 128
-
-int main (int argc, char *argv[])
+int main(int argc, char * argv[] )
 {
-        //the filter char is located in argv[1]
-        //check if an argument was passed
-        int acceptArg = 0;
-        char userInput[128];
-        char filterOn = NULL;
+    if(argc >= 2)
+    {
+        char string[256];
+        while(fgets(string, sizeof(string), stdin) != NULL)
+        {
+            char * pch = strchr(string, *argv[1]);//get the string
 
-        if(argc != 2) {
-            acceptArg = 0;   
-        } 
-        else {
-            filterOn = *argv[1];
-            acceptArg = 1;
-        }     
-
-        //no arguement was passed
-        if(acceptArg == 0) {
-            fprintf(stderr, "You must provide an argument to filter on\n");
-            return 1;
-        }
-        else { 
-            while ( fgets(userInput, sizeof(userInput), stdin) != NULL ) {
-                char *ret;        
-                ret = strchr(userInput, filterOn);
-            
-                if(ret != NULL) {
-                    fprintf(stderr, "%d pre %d: %s\n", getpid(), filterOn, userInput);
-                    fprintf(stdout, "%s", ret);
-                } 
-                else {
-                    fprintf(stderr, "%d rest:\n", getpid());
-                } 
+            fprintf(stderr, "%d pre %s: %s", getpid(), argv[1], string);//print the current
+            if(pch != NULL)
+            {
+                fprintf(stderr, "%d rest %s: %s", getpid(), argv[1], pch);//print what it is after
+                fprintf(stdout, "%s", pch);        
             }
-        }    
-
-        return 0;
+            else
+            {
+                fprintf(stderr, "%d rest %s: \n", getpid(), argv[1]);//error
+            }
+        }
+    }
+    else
+    {
+        fprintf(stderr, "Not enough arguements\n");
+    }
+    return 0;
 }
+
