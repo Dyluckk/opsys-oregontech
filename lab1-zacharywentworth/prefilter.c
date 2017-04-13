@@ -29,6 +29,7 @@ int main(int argc, char *argv[] )
         char buff[MAX_BUFFER];
 
         while(fgets(userInput, sizeof(userInput), stdin) != NULL) {
+            //perserve original user input before mutation
             strcpy(buff, userInput);
             char *ret = strchr(userInput, *argv[1]);
             //check if ret is NULL to NOT include blank lines
