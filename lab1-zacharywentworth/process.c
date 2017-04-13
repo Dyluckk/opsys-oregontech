@@ -15,8 +15,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-void checkFork(int rc);
-void throwError();
+static void checkFork(int rc);
+static void throwError();
 
 /****************************************************************************
 * Main process

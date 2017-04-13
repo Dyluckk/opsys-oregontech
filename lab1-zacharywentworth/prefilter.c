@@ -26,16 +26,19 @@ int main(int argc, char *argv[] )
     if(argc >= 2) {
         char filterOn = *argv[1];
         char userInput[MAX_BUFFER];
+        char buff[MAX_BUFFER];
 
         while(fgets(userInput, sizeof(userInput), stdin) != NULL) {
+            strcpy(buff, userInput);
             char *ret = strchr(userInput, *argv[1]);
-            fprintf(stderr, "%d pre %d: %s", getpid(), filterOn, userInput);
             //check if ret is NULL to NOT include blank lines
             if(ret != NULL) {
+                fprintf(stdout, "%s", ret);
+                fprintf(stderr, "%d pre %d: %s", getpid(), filterOn, buff);
                 fprintf(stderr, "%d rest %d: %s", getpid(), filterOn, ret);
-                fprintf(stdout, "%s\n", ret);
             }
             else {
+                fprintf(stderr, "%d pre %d: %s", getpid(), filterOn, buff);
                 fprintf(stderr, "%d rest %d: \n", getpid(), filterOn);
             }
         }

@@ -26,18 +26,25 @@ int main(int argc, char *argv[])
     if(argc >= 2) {
         char filterOn = *argv[1];
         char userInput[MAX_BUFFER];
+        char buff[MAX_BUFFER];
 
         while(fgets(userInput, sizeof(userInput), stdin) != NULL) {
-            char *ret = strrchr(userInput, filterOn);//use this one to get the other end of string
-            fprintf(stderr, "%d post %d: %s", getpid(), filterOn, userInput);
+            //perserve original user input before mutation
+            strcpy(buff, userInput);
+            char *ret = strrchr(userInput, filterOn);
+            //retain up to filter character
+            *(ret + 1) = 0;
             //check if ret is NULL to NOT include blank lines
             if(ret != NULL) {
-                //retain up to filter character
-                *(ret + 1) = 0;
-                fprintf(stderr, "%d rest %d: %s\n", getpid(), filterOn, userInput);
                 fprintf(stdout, "%s\n", userInput);
+                fprintf(stderr,
+                    "%d post %d: %s", getpid(), filterOn, buff);
+                fprintf(stderr,
+                    "%d rest %d: %s\n", getpid(), filterOn, userInput);
             }
             else {
+                fprintf(stderr,
+                    "%d post %d: %s", getpid(), filterOn, buff);
                 fprintf(stderr, "%d rest %d: \n", getpid(), filterOn);
             }
         }
