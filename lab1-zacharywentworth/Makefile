@@ -10,7 +10,7 @@
 ##
 
 COPTS=-Wall -g -c  -O0 -std=c99
-	 
+
 all: prefilter\
 	postfilter\
 	process
@@ -20,6 +20,9 @@ clean:
 	rm -f prefilter.o
 	rm -f postfilter.o
 	rm -f process.o
+	rm -f prefilter
+	rm -f postfilter
+	rm -f process
 
 .c.o:
 	gcc $(COPTS) $? -o $@

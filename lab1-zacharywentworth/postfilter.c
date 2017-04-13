@@ -1,27 +1,39 @@
 #include <stdio.h>
 #include <string.h>
-int main(int argc, char * argv[])
+#include <unistd.h>
+
+#define MAX_BUFFER 256
+
+/****************************************************************************
+* Main postfilter
+* Arguements: num args, argv contain [./prefilter, filter char]
+* Thread Safety: NONE
+* Return Values: 0 (success), -1 (fail)
+****************************************************************************/
+int main(int argc, char *argv[])
 {
     if(argc >= 2) {
-        char string[256];
-        while(fgets(string, sizeof(string), stdin) != NULL) {
-            char * pch = strrchr(string, *argv[1]);//use this one to get the other end of string
+        char filterOn = *argv[1];
+        char userInput[MAX_BUFFER];
 
-            fprintf(stderr, "%d post %s: %s", getpid(), argv[1], string);
-            if(pch != NULL) {
-                pch++;//increment
-                *pch = 0;//set it to null
-                fprintf(stderr, "%d rest %s: %s\n", getpid(), argv[1], string);
-                fprintf(stdout, "%s\n", string);
+        while(fgets(userInput, sizeof(userInput), stdin) != NULL) {
+            char *ret = strrchr(userInput, filterOn);//use this one to get the other end of string
+            fprintf(stderr, "%d post %d: %s", getpid(), filterOn, userInput);
+            //check if ret is NULL to NOT include blank lines
+            if(ret != NULL) {
+                //retain up to filter character
+                *(ret + 1) = 0;
+                fprintf(stderr, "%d rest %d: %s\n", getpid(), filterOn, userInput);
+                fprintf(stdout, "%s\n", userInput);
             }
             else {
-                fprintf(stderr, "%d rest %s: \n", getpid(), argv[1]);
+                fprintf(stderr, "%d rest %d: \n", getpid(), filterOn);
             }
         }
     }
     else {
-        fprintf(stderr, "Not enough arguements\n");
+        fprintf(stderr, "You must provide an argument to filter on\n");
+        return -1;
     }
     return 0;
 }
-
