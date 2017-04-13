@@ -1,3 +1,14 @@
+/****************************************************************************
+* Author:				           Zachary Wentworth
+* Date Created:            APR. 6, 2017
+* Last Modification Date:	 APR. 13, 2017
+* Lab Number:	             CST352 Lab 1
+* Filename:				         prefilter.c
+*
+* Description:             program used to pretfilter strings based on a char
+*                          delimeter
+****************************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>

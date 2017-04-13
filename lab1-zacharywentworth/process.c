@@ -1,8 +1,19 @@
+/****************************************************************************
+* Author:				           Zachary Wentworth
+* Date Created:            APR. 10, 2017
+* Last Modification Date:	 APR. 13, 2017
+* Lab Number:	             CST352 Lab 1
+* Filename:				         process.c
+*
+* Description:             program uses prefilter and postfilter to process
+*                          the output of a specified command
+****************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h> /* for fork */
-#include <sys/types.h> /* for pid_t */
-#include <sys/wait.h> /* for wait */
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 void checkFork(int rc);
 void throwError();
@@ -51,7 +62,6 @@ int main (int argc, char *argv[])
     if (pidCommand == 0) {
         if(dup2(pipe1[1], STDOUT_FILENO) == -1) throwError();
         if(close(pipe1[0]) == -1) throwError();
-        printf("its cmd");
         if(execvp(command[0], command) == -1) throwError();
     }
     if(close(pipe1[1])== -1) throwError(6);
@@ -76,7 +86,6 @@ int main (int argc, char *argv[])
     if(pidPostfilter == 0) {
         if(dup2(pipe2[0], 0) == -1) throwError();
         //execute postfilter
-        printf("its post");
         if(execl("./postfilter", "postfilter", postfilterChar, (char *)0) == -1)
           throwError();
     }
