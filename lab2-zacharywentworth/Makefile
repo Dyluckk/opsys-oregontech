@@ -10,17 +10,28 @@
 ##
 
 COPTS=-Wall -g -c  -O0 -std=c99
+OBJS=memoryManager.o \
+     test.o
 
-all: memoryAllocator
+all: test
 
 clean:
 	rm -f $(OBJS)
-	rm -f memoryAllocator.o
-	rm -f memoryAllocator
+	rm -f test
+	rm -f *.o
+	rm -f *~
+	rm -f *#
 
 .c.o:
 	gcc $(COPTS) $? -o $@
 
-memoryAllocator: memoryAllocator.o
+test.o: test.c memoryManager.h
+	gcc $(COPTS) test.c -o $@
+
+memoryManager.o: memoryManager.c memoryManager.h
+	gcc $(COPTS) memoryManager.c -o $@
+
+test: $(OBJS)
+	gcc $(OBJS) -o test
 
 

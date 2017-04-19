@@ -1,12 +1,12 @@
 /****************************************************************************
-* Author:				           Zachary Wentworth
-* Date Created:            APR. 10, 2017
-* Last Modification Date:	 APR. 13, 2017
-* Lab Number:	             CST352 Lab 1
-* Filename:				         process.c
+* Author:		    Zachary Wentworth
+* Date Created:             APR. 10, 2017
+* Last Modification Date:   APR. 13, 2017
+* Lab Number:	            CST352 Lab 1
+* Filename:		    process.c
 *
-* Description:             program uses prefilter and postfilter to process
-*                          the output of a specified command
+* Description:              program uses prefilter and postfilter to process
+*                           the output of a specified command
 ****************************************************************************/
 
 #include <stdio.h>
