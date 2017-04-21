@@ -288,7 +288,25 @@ void *my_malloc(int size) {
 }
 
 void my_validate() { 
+  free_header * travel_ptr = (free_header*)g_memory;
+  /* itterate */
+  do {
+    /* out of bounds */
+    if((travel_ptr->size > MEM_SIZE) || (travel_ptr->size <= 0))
+        break;
+    
+    /* if invalid header print error and return */
+    if(travel_ptr->hash == FREE_HASH || travel_ptr->hash == BUSY_HASH)  
+        travel_ptr = next_block(travel_ptr);
+    else {
+        fprintf(stderr, "meta data corruption\n");
+        return -1; 
+    }
 
+
+  } while (travel_ptr != NULL);
+  
+  return 0;
 
 }
 
