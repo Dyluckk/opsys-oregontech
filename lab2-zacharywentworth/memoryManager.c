@@ -118,6 +118,7 @@ free_header* find_free(int size) {
         if (current->next != NULL)  current = current->next;        
 
         /* no free blocks available */
+        printf("NO FREE BLOCK AVAILABLE OF REQUESTED SIZE\n");
         return NULL;
         
     } while(current->next != NULL);
@@ -271,8 +272,10 @@ void *my_malloc(int size) {
     /*---- Find available free block & create busy block ------------------*/
     free_header* new_block = find_free(true_size);     
     /* requested size is not available */    
-    if(new_block == NULL) return NULL;   
-    
+    if(new_block == NULL) {   
+        printf("requested size not available\n");
+        return NULL; 
+    }
     /* create the new busy block */
     requested_block = create_busy_block(new_block, true_size);
 
@@ -287,27 +290,24 @@ void *my_malloc(int size) {
     return requested_block;
 }
 
-void my_validate() { 
+int my_validate() { 
   free_header * travel_ptr = (free_header*)g_memory;
-  /* itterate */
-  do {
-    /* out of bounds */
-    if((travel_ptr->size > MEM_SIZE) || (travel_ptr->size <= 0))
-        break;
+    /* go through list */
+    do {
+        /* out of bounds */
+        if((travel_ptr->size > MEM_SIZE) || (travel_ptr->size <= 0)) break;
     
-    /* if invalid header print error and return */
-    if(travel_ptr->hash == FREE_HASH || travel_ptr->hash == BUSY_HASH)  
-        travel_ptr = next_block(travel_ptr);
-    else {
-        fprintf(stderr, "meta data corruption\n");
-        return -1; 
-    }
+        /* if invalid header print error and return */
+        if(travel_ptr->hash == FREE_HASH || travel_ptr->hash == BUSY_HASH)  
+            travel_ptr = next_block(travel_ptr);
+        else {
+            fprintf(stderr, "meta data corruption\n");
+            return -1; 
+        }
 
-
-  } while (travel_ptr != NULL);
+    } while (travel_ptr != NULL);
   
-  return 0;
-
+    return 0;
 }
 
 void coalesce(free_header* ptr) {
