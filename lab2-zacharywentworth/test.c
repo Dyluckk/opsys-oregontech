@@ -1,3 +1,12 @@
+/****************************************************************************
+* Author:                   Zachary Wentworth
+* Date Created:             APR. 13, 2017
+* Last Modification Date:   APR. 21, 2017
+* Lab Number:               CST352 Lab 2
+* Filename:                 test.c
+*
+* Description:              test file for memoryManager
+****************************************************************************/
 #include <stdio.h>
 #include "memoryManager.h"
 
@@ -6,9 +15,9 @@ int main(int argc, char* argv[])
     void* ptr1 = NULL;
     void* ptr2 = NULL;
     void* ptr3 = NULL;
-    
+
     my_mem_init();
-   
+
     ptr1 = my_malloc(50);
     ptr2 = my_malloc(90);
     ptr3 = my_malloc(200);
@@ -25,10 +34,10 @@ int main(int argc, char* argv[])
     printf("free ptr3 ------------------------------------- \n");
     my_free(ptr3);
     my_print_mem();
-    my_validate(); 
-   
+    my_validate();
+
     ptr2 = my_malloc(3000);
-    
+
     ptr1 = my_malloc(1000);
     ptr1 = my_malloc(950);
     my_print_mem();
@@ -41,10 +50,10 @@ int main(int argc, char* argv[])
         ptr3 = my_malloc(48);
         printf("%d\n", i);
         if (ptr3 == NULL)
-            printf("YO IT NULL THOUGH\n");
         printf("free ptr3 ------------------------------------- \n");
         my_print_mem();
         my_validate();
     }
 
+    return 0;
 }

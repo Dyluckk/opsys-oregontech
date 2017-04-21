@@ -1,7 +1,7 @@
 /****************************************************************************
 * Author:                   Zachary Wentworth
 * Date Created:             APR. 13, 2017
-* Last Modification Date:   APR. 13, 2017
+* Last Modification Date:   APR. 21, 2017
 * Lab Number:               CST352 Lab 2
 * Filename:                 memoryMananger.c
 *
@@ -19,14 +19,14 @@
 #define BUSY_HASH 0x5ed8
 #define BUSY_HEADER_SIZE 8
 
-typedef struct free_header {
+static typedef struct free_header {
     int hash; //indicator to determine block is in fact free
     int size;
     struct free_header* next; //ptr to the next free block
     struct free_header* prev; //ptr to the previous free block
 } free_header;
 
-typedef struct busy_header {
+static typedef struct busy_header {
     int hash; //inficator to determine block is in fact busy
     int size;
 } busy_header;
@@ -42,7 +42,7 @@ static free_header* free_list_ptr = NULL;       // free list pointer
 * Thread Safety: NONE
 * Return Values: free_header* of the next free block
 ****************************************************************************/
-free_header* next_block(free_header *block) {
+static free_header* next_block(free_header *block) {
     char *ptr = (char *)block;
     ptr += block->size;
 
@@ -56,7 +56,7 @@ free_header* next_block(free_header *block) {
 * Thread Safety: NONE
 * Return Values: free_header* of the previous block
 ****************************************************************************/
-free_header* prev_free_block(free_header *block) {
+static free_header* prev_free_block(free_header *block) {
     char *ptr = (char*)block;
 
     /* get free head of above block */
@@ -64,7 +64,7 @@ free_header* prev_free_block(free_header *block) {
     free_header* prev_ptr = (free_header*)ptr;
 
     /* check if free block */
-    if(prev_ptr->hash != FREE_HASH)
+    if (prev_ptr->hash != FREE_HASH)
        return NULL;
 
     /* get size, to get top */
@@ -85,7 +85,7 @@ free_header* prev_free_block(free_header *block) {
 * Thread Safety: NONE
 * Return Values: free_header* to the end_header
 ***************************************************************************/
-free_header* end_header(free_header *block) {
+static free_header* end_header(free_header *block) {
     char *ptr = (char*)block;
     ptr += block->size - sizeof(free_header);
 
@@ -99,13 +99,13 @@ free_header* end_header(free_header *block) {
 * Return Values: if block is available free_header* for block is returned,
 *                if finding a suitable block fails NULL is returned
 *****************************************************************************/
-free_header* find_free(int size) {
+static free_header* find_free(int size) {
     free_header* current = free_list_ptr;
     /* iterate through free list to find first-fit */
     do {
         /* check free hash */
         if (current->hash == FREE_HASH)
-           if(current->size >= size ) return current;
+           if (current->size >= size ) return current;
 
         /* move to next free header */
         if (current->next != NULL)  current = current->next;
@@ -113,7 +113,7 @@ free_header* find_free(int size) {
         /* no free blocks available */
         return NULL;
 
-    } while(current->next != NULL);
+    } while (current->next != NULL);
 }
 
 /****************************************************************************
@@ -122,7 +122,7 @@ free_header* find_free(int size) {
 * Thread Safety: NONE
 * Return Values: NONE
 *****************************************************************************/
-void repair_free_list() {
+static void repair_free_list() {
     free_header * current_ptr = (free_header*)g_memory;
     free_header * travel_ptr = NULL;
     int end_of_mem = 0;
@@ -130,7 +130,7 @@ void repair_free_list() {
     while (current_ptr->hash != FREE_HASH) {
         current_ptr = next_block(current_ptr);
         /* no free blocks found, no need to repair */
-        if((current_ptr->size > MEM_SIZE) || (current_ptr->size <= 0))
+        if ((current_ptr->size > MEM_SIZE) || (current_ptr->size <= 0))
             return;
     }
 
@@ -149,7 +149,7 @@ void repair_free_list() {
     /* connect free blocks in linked list */
     do {
         /* check if current out of bounds */
-        if((current_ptr->size > MEM_SIZE) || (current_ptr->size <= 0))
+        if ((current_ptr->size > MEM_SIZE) || (current_ptr->size <= 0))
             break;
 
         /* find next free */
@@ -160,7 +160,7 @@ void repair_free_list() {
                 break;
             }
             /* found free block */
-            if(travel_ptr->hash == FREE_HASH )
+            if (travel_ptr->hash == FREE_HASH )
                 break;
 
             /* not found, check next block */
@@ -186,7 +186,6 @@ void repair_free_list() {
         travel_ptr = next_block(current_ptr);
 
     } while (1);
-
 }
 
 /****************************************************************************
@@ -197,7 +196,7 @@ void repair_free_list() {
 * Thread Safety: NONE
 * Return Values: busy_header*, the new busy block
 *****************************************************************************/
-busy_header* create_busy_block(free_header* block, int size) {
+static busy_header* create_busy_block(free_header* block, int size) {
     busy_header* new_busy_block = NULL;
 
     /* invalidate the hash of the free_blocks end_header */
@@ -206,7 +205,7 @@ busy_header* create_busy_block(free_header* block, int size) {
 
     /* block should be split if remainder
      * after split is >= to 48 */
-    if(block->size - size >= MIN_SIZE ) {
+    if (block->size - size >= MIN_SIZE ) {
         /* resize the free_block */
         block->size -= size;
         /* get and initialize new end_header for the split free_block */
@@ -273,18 +272,18 @@ void* my_malloc(int size) {
     int true_size = size + BUSY_HEADER_SIZE;
 
     /* size must be greater than 48 */
-    if(true_size < MIN_SIZE) true_size = MIN_SIZE;
+    if (true_size < MIN_SIZE) true_size = MIN_SIZE;
 
     /* align size to multiple of 8 */
-    if(true_size % 8 != 0)
+    if (true_size % 8 != 0)
         true_size = (true_size + 8) - (true_size % 8);
     /* check if size is greater than size of memory */
-    if(true_size > MEM_SIZE) return NULL;
+    if (true_size > MEM_SIZE) return NULL;
 
     /*---- Find available free block & create busy block ------------------*/
     free_header* new_block = find_free(true_size);
     /* requested size is not available */
-    if(new_block == NULL) return NULL;
+    if (new_block == NULL) return NULL;
 
     /* create the new busy block */
     requested_block = create_busy_block(new_block, true_size);
@@ -311,10 +310,10 @@ int my_validate() {
     /* go through list */
     do {
         /* out of bounds */
-        if((travel_ptr->size > MEM_SIZE) || (travel_ptr->size <= 0)) break;
+        if ((travel_ptr->size > MEM_SIZE) || (travel_ptr->size <= 0)) break;
 
         /* if invalid header print error and return */
-        if(travel_ptr->hash == FREE_HASH || travel_ptr->hash == BUSY_HASH)
+        if (travel_ptr->hash == FREE_HASH || travel_ptr->hash == BUSY_HASH)
             travel_ptr = next_block(travel_ptr);
         else {
             fprintf(stderr, "meta data corruption\n");
@@ -332,14 +331,14 @@ int my_validate() {
 * Thread Safety: NONE
 * Return Values: NONE
 ****************************************************************************/
-void coalesce(free_header* ptr) {
+static void coalesce(free_header* ptr) {
     /* ptrs used to look at the above and below blocks in memory */
     free_header* top_ptr = ptr;
     free_header* end_ptr = end_header(top_ptr);
     /* check if free block above is available */
     free_header* above_block = prev_free_block(top_ptr);
 
-    if(above_block != NULL && above_block->hash == FREE_HASH) {
+    if (above_block != NULL && above_block->hash == FREE_HASH) {
         /* invalidate hash of old end header and old top of newly freed */
         free_header* old_end = end_header(above_block);
         old_end->hash = 0;
@@ -356,7 +355,7 @@ void coalesce(free_header* ptr) {
 
     /* check if free block below is available */
     free_header* below_block = next_block(top_ptr);
-    if(below_block->hash == FREE_HASH) {
+    if (below_block->hash == FREE_HASH) {
         /* invalidate top header of below & end of current free block */
         free_header* old_end = end_header(top_ptr);
         below_block->hash = 0;
@@ -370,7 +369,6 @@ void coalesce(free_header* ptr) {
         new_end->next = NULL;
         new_end->prev = NULL;
     }
-
 }
 
 /****************************************************************************
@@ -421,26 +419,26 @@ void my_print_mem() {
     /* traverse and print out memory */
     do {
         /* out of bounds */
-        if((travel_ptr->size > MEM_SIZE) || (travel_ptr->size <= 0))
+        if ((travel_ptr->size > MEM_SIZE) || (travel_ptr->size <= 0))
             break;
         /* print free block */
-        if(travel_ptr->hash == FREE_HASH) {
+        if (travel_ptr->hash == FREE_HASH) {
             printf("%*p", 8, travel_ptr);
-            if(travel_ptr->size < 256) printf("%*s", 5, "0x");
+            if (travel_ptr->size < 256) printf("%*s", 5, "0x");
             else printf("%*s", 4, "0x");
             printf("%*x", 2, travel_ptr->size);
             printf("%*s", 8, "no");
-            if(travel_ptr->next == NULL) printf("%*s", 12,"0x000000");
+            if (travel_ptr->next == NULL) printf("%*s", 12,"0x000000");
             else printf("%*p", 12, travel_ptr->next);
 
-            if(travel_ptr->prev == NULL)printf("%*s\n", 12,"0x000000");
+            if (travel_ptr->prev == NULL)printf("%*s\n", 12,"0x000000");
             else printf("%*p\n", 12, travel_ptr->prev);
 
         }
         /* print busy block */
         else {
             printf("%*p", 8, travel_ptr);
-            if(travel_ptr->size < 256) printf("%*s", 5, "0x");
+            if (travel_ptr->size < 256) printf("%*s", 5, "0x");
             else printf("%*s", 4, "0x");
             printf("%*x", 2, travel_ptr->size);
             printf("%*s\n", 8, "yes");
