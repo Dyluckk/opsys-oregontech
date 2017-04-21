@@ -36,7 +36,7 @@ static char *g_memory = (char *)g_memory_area;  // pointer to the memory array
 static free_header* free_list_ptr = NULL;       // free list pointer
 
 /****************************************************************************
-* next_block, gets next free block header by moving the pointer based
+* next_block, gets next block header by moving the pointer based
 * on the block size
 * Arguements: free_header of the block
 * Thread Safety: NONE
@@ -45,21 +45,37 @@ static free_header* free_list_ptr = NULL;       // free list pointer
 free_header* next_block(free_header *block) {
     char *ptr = (char *)block;
     ptr += block->size;
-
+    
     return (free_header*)ptr;
 }
 
 /****************************************************************************
-* prev_block, gets next free block header by moving the pointer based
+* prev_block, gets next block header by moving the pointer based
 * on the block size
 * Arguements: free_header of the block
 * Thread Safety: NONE
 * Return Values: previous block
 ****************************************************************************/
-free_header* prev_block(free_header *block) {
-    char *ptr = (char *)block;
-    ptr -= block->size;
+free_header* prev_free_block(free_header *block) {
+    char *ptr = (char*)block;
+    
+    /* get free head of above block */
+    ptr -= sizeof(free_header);
+    free_header* prev_ptr = (free_header*)ptr;
+    
+    /* check if free block */
+    if(prev_ptr->hash != FREE_HASH)
+       return NULL;
 
+    /* get size, to get top */
+    int above_size = prev_ptr->size;
+    
+    /* move back to block */
+    ptr += sizeof(free_header);
+    
+    /* get top */
+    ptr -= above_size;
+    
     return (free_header*)ptr;
 }
 
@@ -76,6 +92,14 @@ free_header* end_header(free_header *block) {
     return (free_header*)ptr;
 }
 
+/* gets top header when one has bottom header */
+free_header* get_top_header(free_header* block) {
+    char* ptr = (char*)block;
+    ptr -= block->size - sizeof(free_header);
+    
+    return (free_header*)ptr;
+}
+
 /****************************************************************************
 * finds free block using the first fit method
 * Arguements: free_header of the block
@@ -84,7 +108,6 @@ free_header* end_header(free_header *block) {
 *****************************************************************************/
 free_header* find_free(int size) {
     free_header* current = free_list_ptr;
-
     /* iterate through free list to find first-fit */  
     do {
         /* check free hash */
@@ -98,6 +121,74 @@ free_header* find_free(int size) {
         return NULL;
         
     } while(current->next != NULL);
+
+}
+
+void repair_free_list() {
+    free_header * current_ptr = (free_header*)g_memory;
+    free_header * travel_ptr = NULL;
+    int end_of_mem = 0;
+    /* find first free block */
+    while(current_ptr->hash != FREE_HASH) {
+        current_ptr = next_block(current_ptr);
+        /* no free blocks found, no need to repair */
+        if((current_ptr->size > MEM_SIZE) || (current_ptr->size <= 0))
+            return;
+    }
+
+    /* set free_list_ptr to new top */
+    free_list_ptr = current_ptr;
+
+    /* set ptrs to NULL */
+    current_ptr->next = NULL;
+    current_ptr->prev = NULL;
+    free_header* end_ptr = end_header(current_ptr);
+    end_ptr->next = NULL;
+    end_ptr->prev = NULL;
+
+    travel_ptr = next_block(current_ptr);
+
+    /* connect free blocks in linked list */
+    do {
+        /* check if current out of bounds */
+        if((current_ptr->size > MEM_SIZE) || (current_ptr->size <= 0))
+            break;
+
+        /* find next free */
+        do {
+            /* check bounds */
+            if ((travel_ptr->size > MEM_SIZE) || (travel_ptr->size <= 0)) {
+                end_of_mem = 1;
+                break;
+            }
+            /* found free block */
+            if(travel_ptr->hash == FREE_HASH )
+                break;
+
+            /* not found, check next block */
+            travel_ptr = next_block(travel_ptr);
+
+        } while (1);
+
+        /* finished repair */
+        if (end_of_mem) break;
+
+        /* attach next and prev */
+        current_ptr->next = travel_ptr;
+        travel_ptr->prev = current_ptr;
+        /* copy meta-data to end headers */
+        free_header* end_current = end_header(current_ptr);
+        free_header* end_travel = end_header(travel_ptr);
+        end_current->next = current_ptr->next;
+        end_travel->prev = travel_ptr->prev;
+
+        /* move current to travel */
+        current_ptr = travel_ptr;
+        /* move travel to next */
+        travel_ptr = next_block(current_ptr);
+
+    } while (1);
+
 }
 
 busy_header* create_busy_block(free_header* block, int size) {
@@ -120,7 +211,7 @@ busy_header* create_busy_block(free_header* block, int size) {
         new_end_header->prev = NULL;    
         /* move ptr to starting address of the new busy block being created */
         new_busy_block = 
-            (busy_header*)((char*)(new_end_header + sizeof(free_header)));  
+            (busy_header*)((char*)(new_end_header) + sizeof(free_header));
     }
     /* override the free_block */
     else {
@@ -185,23 +276,95 @@ void *my_malloc(int size) {
     /* create the new busy block */
     requested_block = create_busy_block(new_block, true_size);
 
+    /* Fix free list (reattach ptrs) */
+    repair_free_list();
+
     /* set address to return to the data portion of the busy block */
     requested_block = 
-        (busy_header*)((char*)(requested_block + sizeof(busy_header*)));   
-
+        (busy_header*)((char*)(requested_block) + sizeof(busy_header));
+       
     //returns a pointer to the data block of memory of that busy block
     return requested_block;
 }
 
-void my_free(void *ptr) {
+void my_validate() { 
 
+
+}
+
+void coalesce(free_header* ptr) {
+    /* ptrs used to look at the above and below blocks in memory */
+    free_header* top_ptr = ptr;
+    free_header* end_ptr = end_header(top_ptr);
+    /* check if free block above is available */
+    free_header* above_block = prev_free_block(top_ptr);
+  
+    if(above_block != NULL && above_block->hash == FREE_HASH) {
+        /* invalidate hash of old end header and old top of newly freed */
+        free_header* old_end = end_header(above_block);
+        old_end->hash = 0;
+        top_ptr->hash = 0;
+        /* set the new size of the above header being coalesced */
+        above_block->size += top_ptr->size;
+        /* set the new end header of the above header that was coalesced */
+        free_header* new_end = end_ptr;
+        new_end->hash = FREE_HASH;
+        new_end->size = above_block->size;
+        /* set new top */
+        top_ptr = above_block;
+    }
+ 
+    /* check if free block below is available */
+    free_header* below_block = next_block(top_ptr);
+    if(below_block->hash == FREE_HASH) {
+        /* invalidate top header of below & end of current free block */
+        free_header* old_end = end_header(top_ptr);
+        below_block->hash = 0;
+        old_end->hash = 0;
+        /* set the new size of the current free block */
+        top_ptr->size += below_block->size;
+        /* set the new end header of the below header that was coalesced */
+        free_header* new_end = end_header(below_block);
+        new_end->size = top_ptr->size;
+        new_end->hash = FREE_HASH;
+        new_end->next = NULL;
+        new_end->prev = NULL;
+    } 
+
+}
+
+void my_free(void *ptr) {
+    /*---- Convert busy block to a free block -----------------------------*/
+    /* move ptr to blocks busy header location */
+    busy_header* busy_block = (busy_header*)ptr;
+    busy_block = (busy_header*)((char*)(busy_block) - sizeof(busy_header));
+    
+    //ptr = (busy_header*)ptr;
+    /* save size of the busy block to temp */
+    int busy_size = busy_block->size;
+    /* set the top header of the newly freed block */
+    free_header* free_block = (free_header*)busy_block;
+    free_block->hash = FREE_HASH;
+    free_block->size = busy_size;
+    free_block->next = NULL;
+    free_block->prev = NULL;
+    /* set the end header of the newly freed block */
+    free_header* new_end_header = end_header(free_block);
+    new_end_header->hash = free_block->hash;
+    new_end_header->size = free_block->size;
+    new_end_header->next = free_block->next;
+    new_end_header->prev = free_block->prev;
+    /*---- Attempt to coalesce --------------------------------------------*/
+    coalesce((free_header*)free_block);
+
+    /*---- Fix free list (reattach ptrs) ----------------------------------*/ 
+    repair_free_list();    
 }
 
 void my_print_mem() {
     free_header * travel_ptr = (free_header*)g_memory;
     /* print column headers */
-    printf("Address    Size    Busy    Next Free  Prev\n");
-    int i = 0; 
+    printf("Address    Size    Busy    NextFree    PrevFree\n");
     /* traverse and print out memory */
     do {
         /* out of bounds */
@@ -209,42 +372,28 @@ void my_print_mem() {
             break;
         /* print free block */
         if(travel_ptr->hash == FREE_HASH) {
-            printf("%p  0x%x    no      %p      %p\n", 
-                   travel_ptr, travel_ptr->size, 
-                   travel_ptr->next, travel_ptr->prev);
+            printf("%*p", 8, travel_ptr);
+            if(travel_ptr->size < 256) printf("%*s", 5, "0x");
+            else printf("%*s", 4, "0x");    
+            printf("%*x", 2, travel_ptr->size);
+            printf("%*s", 8, "no");
+            if(travel_ptr->next == NULL) printf("%*s", 12,"0x000000");
+            else printf("%*p", 12, travel_ptr->next);
+
+            if(travel_ptr->prev == NULL)printf("%*s\n", 12,"0x000000");
+            else printf("%*p\n", 12, travel_ptr->prev);
+
         }
         /* print busy block */
-        else { 
-            printf("%p  0x%x    yes\n",
-                   travel_ptr, travel_ptr->size);
+        else {
+            printf("%*p", 8, travel_ptr);
+            if(travel_ptr->size < 256) printf("%*s", 5, "0x");
+            else printf("%*s", 4, "0x");
+            printf("%*x", 2, travel_ptr->size);
+            printf("%*s\n", 8, "yes");
         } 
-        //printf("%d\n",i);
-        //i++;
+       
+        travel_ptr = next_block(travel_ptr);
 
-        //if(i == 3) break;
-    } while ((travel_ptr = next_block(travel_ptr)) != NULL);
-      
-      
-//      free_header* travel = (free_header*)g_memory;  
-//      printf("%p%s", travel, "   ");
-//      printf("0x%x", travel->size); 
-    
-//      if(travel->hash == FREE_HASH) {
-//        printf("   no      ");
-//    }
-//    else {
-//        printf("   yes     ");
-//    }
-//    
-//    if(travel->next != NULL) {
-//       printf("0x%p\n", travel->next);
-//    }
-//    else {
-//        printf("\n");
-//    }
-}
-
-//TODO ref block helper
-//TODO split helper
-// busy block must be 48> bytes
-
+    } while (travel_ptr != NULL);
+}   
