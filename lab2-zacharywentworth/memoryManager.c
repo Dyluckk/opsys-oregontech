@@ -1,4 +1,4 @@
-fprintf(stdout, /****************************************************************************
+/****************************************************************************
 * Author:                   Zachary Wentworth
 * Date Created:             APR. 13, 2017
 * Last Modification Date:   APR. 21, 2017
@@ -316,7 +316,8 @@ int my_validate() {
         if (travel_ptr->hash == FREE_HASH || travel_ptr->hash == BUSY_HASH)
             travel_ptr = next_block(travel_ptr);
         else {
-            fprintf(stderr, "meta data corruption\n");
+            int check_print = fprintf(stderr, "meta data corruption\n");
+            if (check_print < 0) printf_fail();
             return -1;
         }
 
@@ -407,6 +408,16 @@ void my_free(void *ptr) {
 }
 
 /****************************************************************************
+* printf_fail, prints error to stderr if printf fails
+* Arguements: NONE
+* Thread Safety: NONE
+* Return Values: NONE
+****************************************************************************/
+static void printf_fail() {
+  fprintf(stderr, "print to stdout error\n");
+}
+
+/****************************************************************************
 * my_print_mem, prints the meta data for all blocks in memory address order
 * Arguements: NONE
 * Thread Safety: NONE
@@ -415,7 +426,8 @@ void my_free(void *ptr) {
 void my_print_mem() {
     free_header * travel_ptr = (free_header*)g_memory;
     /* print column headers */
-    fprintf(stdout, "Address    Size    Busy    NextFree    PrevFree\n");
+    int check_print = printf("Address    Size    Busy    NextFree    PrevFree\n");
+    if (check_print < 0) printf_fail();
     /* traverse and print out memory */
     do {
         /* out of bounds */
@@ -423,25 +435,63 @@ void my_print_mem() {
             break;
         /* print free block */
         if (travel_ptr->hash == FREE_HASH) {
-            fprintf(stdout, "%*p", 8, travel_ptr);
-            if (travel_ptr->size < 256) fprintf(stdout, "%*s", 5, "0x");
-            else fprintf(stdout, "%*s", 4, "0x");
-            fprintf(stdout, "%*x", 2, travel_ptr->size);
-            fprintf(stdout, "%*s", 8, "no");
-            if (travel_ptr->next == NULL) fprintf(stdout, "%*s", 12,"0x000000");
-            else fprintf(stdout, "%*p", 12, travel_ptr->next);
 
-            if (travel_ptr->prev == NULL)fprintf(stdout, "%*s\n", 12,"0x000000");
-            else fprintf(stdout, "%*p\n", 12, travel_ptr->prev);
+            check_print = printf("%*p", 8, travel_ptr);
+            if (check_print < 0) printf_fail();
+
+            if (travel_ptr->size < 256) {
+                check_print = printf("%*s", 5, "0x");
+                if (check_print < 0) printf_fail();
+            }
+            else {
+                check_print = printf("%*s", 4, "0x");
+                if (check_print < 0) printf_fail();
+            }
+
+            check_print = printf("%*x", 2, travel_ptr->size);
+            if (check_print < 0) printf_fail();
+
+            check_print = printf("%*s", 8, "no");
+            if (check_print < 0) printf_fail();
+
+            if (travel_ptr->next == NULL) {
+                check_print = printf("%*s", 12,"0x000000");
+                if (check_print < 0) printf_fail();
+            }
+            else {
+                check_print = printf("%*p", 12, travel_ptr->next);
+                if (check_print < 0) printf_fail();
+            }
+
+            if (travel_ptr->prev == NULL) {
+                check_print = printf("%*s\n", 12,"0x000000");
+                if (check_print < 0) printf_fail();
+            }
+            else {
+                check_print = printf("%*p\n", 12, travel_ptr->prev);
+                if (check_print < 0) printf_fail();
+            }
 
         }
         /* print busy block */
         else {
-            fprintf(stdout, "%*p", 8, travel_ptr);
-            if (travel_ptr->size < 256) fprintf(stdout, "%*s", 5, "0x");
-            else fprintf(stdout, "%*s", 4, "0x");
-            fprintf(stdout, "%*x", 2, travel_ptr->size);
-            fprintf(stdout, "%*s\n", 8, "yes");
+            check_print = printf("%*p", 8, travel_ptr);
+            if (check_print < 0) printf_fail();
+
+            if (travel_ptr->size < 256) {
+                check_print = printf("%*s", 5, "0x");
+                if (check_print < 0) printf_fail();
+            }
+            else {
+              check_print = printf("%*s", 4, "0x");
+              if (check_print < 0) printf_fail();
+            }
+
+            check_print = printf("%*x", 2, travel_ptr->size);
+            if (check_print < 0) printf_fail();
+
+            check_print = printf("%*s\n", 8, "yes");
+            if (check_print < 0) printf_fail();
         }
 
         travel_ptr = next_block(travel_ptr);
