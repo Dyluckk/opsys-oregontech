@@ -19,14 +19,14 @@
 #define BUSY_HASH 0x5ed8
 #define BUSY_HEADER_SIZE 8
 
-static typedef struct free_header {
+typedef struct free_header {
     int hash; //indicator to determine block is in fact free
     int size;
     struct free_header* next; //ptr to the next free block
     struct free_header* prev; //ptr to the previous free block
 } free_header;
 
-static typedef struct busy_header {
+typedef struct busy_header {
     int hash; //inficator to determine block is in fact busy
     int size;
 } busy_header;

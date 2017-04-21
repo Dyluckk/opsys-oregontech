@@ -38,19 +38,12 @@ int main(int argc, char* argv[])
 
     ptr2 = my_malloc(3000);
 
-    ptr1 = my_malloc(1000);
-    ptr1 = my_malloc(950);
-    my_print_mem();
-    ptr1 = my_malloc(48);
-    my_print_mem();
-
-    //TODO not returning null for some reason
-
-    for (int i = 0; i < 0; i++) {
+    //TODO not returns null but steps out of bounds somehow
+    for (int i = 0; i < 42; i++) {
         ptr3 = my_malloc(48);
         printf("%d\n", i);
         if (ptr3 == NULL)
-        printf("free ptr3 ------------------------------------- \n");
+        printf(" allocating 48 ------------------------------------- \n");
         my_print_mem();
         my_validate();
     }
