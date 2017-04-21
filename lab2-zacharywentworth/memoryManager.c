@@ -36,6 +36,16 @@ static char *g_memory = (char *)g_memory_area;  // pointer to the memory array
 static free_header* free_list_ptr = NULL;       // free list pointer
 
 /****************************************************************************
+* printf_fail, prints error to stderr if printf fails
+* Arguements: NONE
+* Thread Safety: NONE
+* Return Values: NONE
+****************************************************************************/
+static void printf_fail() {
+  fprintf(stderr, "print to stdout error\n");
+}
+
+/****************************************************************************
 * next_block, gets next block header by moving the pointer based
 * on the block size
 * Arguements: free_header of the block
@@ -405,16 +415,6 @@ void my_free(void *ptr) {
 
     /*---- Fix free list (reattach ptrs) ----------------------------------*/
     repair_free_list();
-}
-
-/****************************************************************************
-* printf_fail, prints error to stderr if printf fails
-* Arguements: NONE
-* Thread Safety: NONE
-* Return Values: NONE
-****************************************************************************/
-static void printf_fail() {
-  fprintf(stderr, "print to stdout error\n");
 }
 
 /****************************************************************************
