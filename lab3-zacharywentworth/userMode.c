@@ -1,3 +1,12 @@
+/****************************************************************************
+* Author:                   Zachary Wentworth
+* Date Created:             APR. 20, 2017
+* Last Modification Date:   APR. 27, 2017
+* Lab Number:               CST352 Lab 3
+* Filename:                 userMode.c
+*
+* Description:              UserMode executable
+****************************************************************************/
 #pragma feature inp
 
 #include "userMode.h"
@@ -27,7 +36,7 @@ int prints(char *string) {
     io_blk_t io;
     io.op = PRINTS_CALL;
     io.param1 = string;
-    
+
     syscall(&io);
 
     /* param2 holds success value 0 or -1 */
@@ -64,19 +73,19 @@ int geti() {
     io.op = GETI_CALL;
     /* int value used to store returned int after syscall completes */
     int val = 0;
-    io.param1 = &val;  
-    
+    io.param1 = &val;
+
     syscall(&io);
-    
+
     /* return stored val if GETI_CALL is successful */
     if (io.param2 == 0) return val;
-    /* fail case */ 
+    /* fail case */
     return -1;
 }
 
 /****************************************************************************
 * Description: get string from input
-* Arguements: @char* buffer 
+* Arguements: @char* buffer
 * Thread Safety: NONE
 * Return Values: 0 if success, -1 if fail
 ****************************************************************************/
@@ -101,13 +110,13 @@ int halt() {
     /* init struct */
     io_blk_t io;
     io.op = EXIT_CALL;
-    
+
     syscall(&io);
 }
 
 /****************************************************************************
 * Description: used to call trap routine
-* Arguements: @io_blk_t* io stuct 
+* Arguements: @io_blk_t* io stuct
 * Thread Safety: NONE
 * Return Values: NONE
 ****************************************************************************/
@@ -125,9 +134,9 @@ void syscall(io_blk_t* io) {
         else {
             asm("TRAP");
         }
-    } 
-        
-    else 
+    }
+
+    else
         io->param2 = -1;
 }
 
@@ -142,7 +151,7 @@ int validate_args(io_blk_t* io) {
     if( io->op == PRINTS_CALL ) return check_limits(io);
     if( io->op == GETI_CALL)  return check_limits(io);
     if( io->op == GETL_CALL ) return check_limits(io);
-    
+
     return -1;
 }
 

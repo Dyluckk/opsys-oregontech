@@ -1,3 +1,12 @@
+/****************************************************************************
+* Author:                   Zachary Wentworth
+* Date Created:             APR. 20, 2017
+* Last Modification Date:   APR. 27, 2017
+* Lab Number:               CST352 Lab 3
+* Filename:                 os.c
+*
+* Description:              OS executable
+****************************************************************************/
 #pragma feature inp
 #pragma startup startup__
 #pragma systrap systrap
@@ -57,7 +66,7 @@ int startup__()
     asm2("POPREG", SP_REG);
 
     // Execute user.slb
-    asm2("JMPUSER", 8); 
+    asm2("JMPUSER", 8);
     asm("HALT");
 }
 
@@ -69,7 +78,7 @@ int startup__()
 ****************************************************************************/
 void my_trap_routine(io_blk_t* io) {
     /* adjust address from "user address" to "OS" address */
-    int bp; 
+    int bp;
     bp = asm2("PUSHREG", BP_REG);
     io_blk_t* temp = io;
     int temp_param1;
@@ -83,7 +92,7 @@ void my_trap_routine(io_blk_t* io) {
     io_temp = (char*)io->param1;
     io_temp += bp;
     io->param1 = io_temp;
-   
+
     /* validate args after adjusting addresses, reset on fail */
     if( validate_args(io) != 0 ) {
         io->param2 = -1;
@@ -108,12 +117,12 @@ void my_trap_routine(io_blk_t* io) {
     else if ( io->op == EXIT_CALL ) {
         asm("HALT");
         io->param2 = 0;
-    } 
+    }
     else {
         io->param2 = -1;
     }
 
-    io = temp;    
+    io = temp;
 }
 
 /****************************************************************************
@@ -152,7 +161,7 @@ int check_limits(io_blk_t* io) {
     /* init base and limit ptrs */
     int lp;
     lp = asm2("PUSHREG", LP_REG);
-    int bp; 
+    int bp;
     bp = asm2("PUSHREG", BP_REG);
 
     /* check address ranges */
