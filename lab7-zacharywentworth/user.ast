@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<Program>
+<compiled time="2017:6:2 5:58:6" />
+<DeclsList><FuncDecl localsize="0" ><Symbol name="prints" seq="5" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="6" /></PointerType>
+<Symbol name="string" seq="7" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="printi" seq="8" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="value" seq="9" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="geti" seq="10" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="gets" seq="11" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="6" /></PointerType>
+<Symbol name="buff" seq="12" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="halt" seq="13" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="exec" seq="14" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="6" /></PointerType>
+<Symbol name="filename" seq="15" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<Pragma name="once" /><VarDecl offset="0"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="BP_REG" seq="16" /><IntExpr value="0" /></VarDecl>
+<VarDecl offset="1"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="LP_REG" seq="17" /><IntExpr value="1" /></VarDecl>
+<VarDecl offset="2"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="IP_REG" seq="18" /><IntExpr value="2" /></VarDecl>
+<VarDecl offset="3"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="SP_REG" seq="19" /><IntExpr value="3" /></VarDecl>
+<VarDecl offset="4"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FP_REG" seq="20" /><IntExpr value="4" /></VarDecl>
+<VarDecl offset="5"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FLAG_REG" seq="21" /><IntExpr value="5" /></VarDecl>
+<VarDecl offset="6"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="IVEC_REG" seq="22" /><IntExpr value="6" /></VarDecl>
+<VarDecl offset="7"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="WORD_SIZE" seq="23" /><IntExpr value="4" /></VarDecl>
+<VarDecl offset="8"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_HALTED" seq="24" /><IntExpr value="1" /></VarDecl>
+<VarDecl offset="9"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_USER_MODE" seq="25" /><IntExpr value="2" /></VarDecl>
+<VarDecl offset="10"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_INT_MODE" seq="26" /><IntExpr value="4" /></VarDecl>
+<VarDecl offset="11"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_INT_DIS" seq="27" /><IntExpr value="8" /></VarDecl>
+<VarDecl offset="12"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_VMEM" seq="28" /><IntExpr value="16" /></VarDecl>
+<VarDecl offset="16"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_I_FIRST_INT" seq="29" /><IntExpr value="65536" /></VarDecl>
+<VarDecl offset="20"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_I_ALL" seq="30" /><IntExpr value="-65536" /></VarDecl>
+<VarDecl offset="24"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_I_MACH" seq="31" /><IntExpr value="65536" /></VarDecl>
+<VarDecl offset="28"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_I_TRAP" seq="32" /><IntExpr value="131072" /></VarDecl>
+<FuncDecl localsize="0" ><Symbol name="main" seq="33" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<StmtsList><While><IntExpr value="1" /><ExprStmt><FuncCall><PlainVarRef><Symbol name="prints" seq="5" /></PlainVarRef>
+<Params><StringLit value="this lab is fun\n" /></Params>
+</FuncCall>
+</ExprStmt>
+</While>
+</StmtsList>
+</FuncDecl>
+</DeclsList>
+</Program>

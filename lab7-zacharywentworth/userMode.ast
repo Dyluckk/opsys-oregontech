@@ -1,0 +1,545 @@
+<?xml version="1.0"?>
+<Program>
+<compiled time="2017:6:2 5:58:6" />
+<DeclsList><Pragma name="feature"  arg="inp" /><FuncDecl localsize="0" ><Symbol name="prints" seq="6" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="string" seq="8" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="printi" seq="9" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="value" seq="10" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="geti" seq="11" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="gets" seq="12" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="buff" seq="13" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="halt" seq="14" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="exec" seq="15" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="filename" seq="16" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<Pragma name="once" /><VarDecl offset="0"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="EXIT_CALL" seq="17" /><IntExpr value="1" /></VarDecl>
+<VarDecl offset="1"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="PRINTI_CALL" seq="18" /><IntExpr value="2" /></VarDecl>
+<VarDecl offset="2"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="PRINTS_CALL" seq="19" /><IntExpr value="3" /></VarDecl>
+<VarDecl offset="3"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="PRINTC_CALL" seq="20" /><IntExpr value="4" /></VarDecl>
+<VarDecl offset="4"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="GETS_CALL" seq="21" /><IntExpr value="5" /></VarDecl>
+<VarDecl offset="5"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="GETL_CALL" seq="22" /><IntExpr value="6" /></VarDecl>
+<VarDecl offset="6"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="GETI_CALL" seq="23" /><IntExpr value="7" /></VarDecl>
+<VarDecl offset="7"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="EXEC_CALL" seq="24" /><IntExpr value="8" /></VarDecl>
+<VarDecl offset="8"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FORK_CALL" seq="25" /><IntExpr value="9" /></VarDecl>
+<VarDecl offset="9"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="WAIT_CALL" seq="26" /><IntExpr value="10" /></VarDecl>
+<Pragma name="once" /><VarDecl offset="10"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="BP_REG" seq="27" /><IntExpr value="0" /></VarDecl>
+<VarDecl offset="11"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="LP_REG" seq="28" /><IntExpr value="1" /></VarDecl>
+<VarDecl offset="12"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="IP_REG" seq="29" /><IntExpr value="2" /></VarDecl>
+<VarDecl offset="13"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="SP_REG" seq="30" /><IntExpr value="3" /></VarDecl>
+<VarDecl offset="14"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FP_REG" seq="31" /><IntExpr value="4" /></VarDecl>
+<VarDecl offset="15"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FLAG_REG" seq="32" /><IntExpr value="5" /></VarDecl>
+<VarDecl offset="16"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="IVEC_REG" seq="33" /><IntExpr value="6" /></VarDecl>
+<VarDecl offset="17"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="WORD_SIZE" seq="34" /><IntExpr value="4" /></VarDecl>
+<VarDecl offset="18"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_HALTED" seq="35" /><IntExpr value="1" /></VarDecl>
+<VarDecl offset="19"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_USER_MODE" seq="36" /><IntExpr value="2" /></VarDecl>
+<VarDecl offset="20"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_INT_MODE" seq="37" /><IntExpr value="4" /></VarDecl>
+<VarDecl offset="21"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_INT_DIS" seq="38" /><IntExpr value="8" /></VarDecl>
+<VarDecl offset="22"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_VMEM" seq="39" /><IntExpr value="16" /></VarDecl>
+<VarDecl offset="24"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_I_FIRST_INT" seq="40" /><IntExpr value="65536" /></VarDecl>
+<VarDecl offset="28"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_I_ALL" seq="41" /><IntExpr value="-65536" /></VarDecl>
+<VarDecl offset="32"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_I_MACH" seq="42" /><IntExpr value="65536" /></VarDecl>
+<VarDecl offset="36"  global="true"  static="true" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="FL_I_TRAP" seq="43" /><IntExpr value="131072" /></VarDecl>
+<Pragma name="once" /><Pragma name="library"  arg="&lt;string.sl&gt;" /><FuncDecl localsize="0" ><Symbol name="strlen" seq="44" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="str" seq="45" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="strcpy" seq="46" /><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="dest" seq="47" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="src" seq="48" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="strcat" seq="49" /><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="dest" seq="50" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="src" seq="51" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="strncpy" seq="52" /><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="dest" seq="53" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="src" seq="54" /></VarDecl>
+<VarDecl offset="-20" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="size" seq="55" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="strchr" seq="56" /><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="haystack" seq="57" /></VarDecl>
+<VarDecl offset="-16" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="needle" seq="58" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="strcmp" seq="59" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="str1" seq="60" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="str2" seq="61" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="strrev" seq="62" /><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="str" seq="63" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="itostr" seq="64" /><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="value" seq="65" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="str" seq="66" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="xtostr" seq="67" /><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="value" seq="68" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="str" seq="69" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="memcpy" seq="71" /><PointerType><Symbol name="void*" seq="70" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="70" /></PointerType>
+<Symbol name="dest" seq="72" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="void*" seq="70" /></PointerType>
+<Symbol name="src" seq="73" /></VarDecl>
+<VarDecl offset="-20" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="size" seq="74" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="memset" seq="75" /><PointerType><Symbol name="void*" seq="70" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="70" /></PointerType>
+<Symbol name="buff" seq="76" /></VarDecl>
+<VarDecl offset="-16" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="val" seq="77" /></VarDecl>
+<VarDecl offset="-20" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="size" seq="78" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<Typedef><StructType><Symbol name="$$unnamed_struct_1" seq="79" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="op" seq="80" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param1" seq="81" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param2" seq="82" /></VarDecl>
+</DeclsList>
+</StructType>
+<Symbol name="io_blk_t" seq="83" /></Typedef>
+<FuncDecl localsize="0" ><Symbol name="syscall" seq="84" /><BaseDecl size="1" ><Symbol name="void" seq="4" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+<Symbol name="io" seq="86" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="validate_args" seq="87" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+<Symbol name="io" seq="88" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="check_limits" seq="89" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+<Symbol name="io" seq="90" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="12" ><Symbol name="prints" seq="6" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="string" seq="91" /></VarDecl>
+</DeclsList>
+<StmtsList><VarDecl offset="0" ><StructType><Symbol name="$$unnamed_struct_1" seq="79" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="op" seq="80" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param1" seq="81" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param2" seq="82" /></VarDecl>
+</DeclsList>
+</StructType>
+<Symbol name="io" seq="92" /></VarDecl>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="92" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructRef>
+<PlainVarRef><Symbol name="PRINTS_CALL" seq="19" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="92" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructRef>
+<BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<PlainVarRef><Symbol name="string" seq="91" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><FuncCall><PlainVarRef><Symbol name="syscall" seq="84" /></PlainVarRef>
+<Params><AddressExpr><PlainVarRef><Symbol name="io" seq="92" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+</AddressExpr>
+</Params>
+</FuncCall>
+</ExprStmt>
+<Return><StructRef><PlainVarRef><Symbol name="io" seq="92" /></PlainVarRef>
+<Symbol name="param2" seq="82" /></StructRef>
+</Return>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="32" ><Symbol name="printi" seq="9" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="value" seq="96" /></VarDecl>
+</DeclsList>
+<StmtsList><VarDecl offset="0" ><StructType><Symbol name="$$unnamed_struct_1" seq="79" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="op" seq="80" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param1" seq="81" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param2" seq="82" /></VarDecl>
+</DeclsList>
+</StructType>
+<Symbol name="io" seq="97" /></VarDecl>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="97" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructRef>
+<PlainVarRef><Symbol name="PRINTS_CALL" seq="19" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<VarDecl offset="12" ><ArrayType Size="20" ><Symbol name="char[20]" seq="100" /><BaseDecl size="1" ><Symbol name="char" seq="1" /></BaseDecl>
+</ArrayType>
+<Symbol name="buff" seq="99" /><IntExpr value="20" /></VarDecl>
+<ExprStmt><FuncCall><PlainVarRef><Symbol name="itostr" seq="64" /></PlainVarRef>
+<Params><PlainVarRef><Symbol name="value" seq="96" /></PlainVarRef>
+<PlainVarRef><Symbol name="buff" seq="99" /></PlainVarRef>
+</Params>
+</FuncCall>
+</ExprStmt>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="97" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructRef>
+<BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<PlainVarRef><Symbol name="buff" seq="99" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><FuncCall><PlainVarRef><Symbol name="syscall" seq="84" /></PlainVarRef>
+<Params><AddressExpr><PlainVarRef><Symbol name="io" seq="97" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+</AddressExpr>
+</Params>
+</FuncCall>
+</ExprStmt>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="16" ><Symbol name="geti" seq="11" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<StmtsList><VarDecl offset="0" ><StructType><Symbol name="$$unnamed_struct_1" seq="79" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="op" seq="80" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param1" seq="81" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param2" seq="82" /></VarDecl>
+</DeclsList>
+</StructType>
+<Symbol name="io" seq="102" /></VarDecl>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="102" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructRef>
+<PlainVarRef><Symbol name="GETI_CALL" seq="23" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<VarDecl offset="12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="val" seq="104" /><IntExpr value="0" /></VarDecl>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="102" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructRef>
+<BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<AddressExpr><PlainVarRef><Symbol name="val" seq="104" /></PlainVarRef>
+<PointerType><Symbol name="int*" seq="106" /></PointerType>
+</AddressExpr>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><FuncCall><PlainVarRef><Symbol name="syscall" seq="84" /></PlainVarRef>
+<Params><AddressExpr><PlainVarRef><Symbol name="io" seq="102" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+</AddressExpr>
+</Params>
+</FuncCall>
+</ExprStmt>
+<IfStmt><BinaryExpr op="==" ><StructRef><PlainVarRef><Symbol name="io" seq="102" /></PlainVarRef>
+<Symbol name="param2" seq="82" /></StructRef>
+<IntExpr value="0" /></BinaryExpr>
+<Return><PlainVarRef><Symbol name="val" seq="104" /></PlainVarRef>
+</Return>
+</IfStmt>
+<Return><UnaryExpr op="-" ><IntExpr value="1" /></UnaryExpr>
+</Return>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="12" ><Symbol name="gets" seq="12" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="buff" seq="108" /></VarDecl>
+</DeclsList>
+<StmtsList><VarDecl offset="0" ><StructType><Symbol name="$$unnamed_struct_1" seq="79" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="op" seq="80" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param1" seq="81" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param2" seq="82" /></VarDecl>
+</DeclsList>
+</StructType>
+<Symbol name="io" seq="109" /></VarDecl>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="109" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructRef>
+<PlainVarRef><Symbol name="GETL_CALL" seq="22" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="109" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructRef>
+<BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<PlainVarRef><Symbol name="buff" seq="108" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><FuncCall><PlainVarRef><Symbol name="syscall" seq="84" /></PlainVarRef>
+<Params><AddressExpr><PlainVarRef><Symbol name="io" seq="109" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+</AddressExpr>
+</Params>
+</FuncCall>
+</ExprStmt>
+<Return><StructRef><PlainVarRef><Symbol name="io" seq="109" /></PlainVarRef>
+<Symbol name="param2" seq="82" /></StructRef>
+</Return>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="12" ><Symbol name="halt" seq="14" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<StmtsList><VarDecl offset="0" ><StructType><Symbol name="$$unnamed_struct_1" seq="79" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="op" seq="80" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param1" seq="81" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param2" seq="82" /></VarDecl>
+</DeclsList>
+</StructType>
+<Symbol name="io" seq="113" /></VarDecl>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="113" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructRef>
+<PlainVarRef><Symbol name="EXIT_CALL" seq="17" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><FuncCall><PlainVarRef><Symbol name="syscall" seq="84" /></PlainVarRef>
+<Params><AddressExpr><PlainVarRef><Symbol name="io" seq="113" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+</AddressExpr>
+</Params>
+</FuncCall>
+</ExprStmt>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="12" ><Symbol name="exec" seq="15" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="char*" seq="7" /></PointerType>
+<Symbol name="filename" seq="115" /></VarDecl>
+</DeclsList>
+<StmtsList><VarDecl offset="0" ><StructType><Symbol name="$$unnamed_struct_1" seq="79" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="op" seq="80" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param1" seq="81" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="param2" seq="82" /></VarDecl>
+</DeclsList>
+</StructType>
+<Symbol name="io" seq="116" /></VarDecl>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="116" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructRef>
+<PlainVarRef><Symbol name="EXIT_CALL" seq="17" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><StructRef><PlainVarRef><Symbol name="io" seq="116" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructRef>
+<BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<PlainVarRef><Symbol name="filename" seq="115" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><FuncCall><PlainVarRef><Symbol name="syscall" seq="84" /></PlainVarRef>
+<Params><AddressExpr><PlainVarRef><Symbol name="io" seq="116" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+</AddressExpr>
+</Params>
+</FuncCall>
+</ExprStmt>
+<Return><StructRef><PlainVarRef><Symbol name="io" seq="116" /></PlainVarRef>
+<Symbol name="param2" seq="82" /></StructRef>
+</Return>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="4" ><Symbol name="syscall" seq="84" /><BaseDecl size="1" ><Symbol name="void" seq="4" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+<Symbol name="io" seq="120" /></VarDecl>
+</DeclsList>
+<StmtsList><IfStmt><BinaryExpr op="==" ><FuncCall><PlainVarRef><Symbol name="validate_args" seq="87" /></PlainVarRef>
+<Params><PlainVarRef><Symbol name="io" seq="120" /></PlainVarRef>
+</Params>
+</FuncCall>
+<IntExpr value="0" /></BinaryExpr>
+<StmtsList><IfStmt><ShortCircuitExpr op="||" ><ShortCircuitExpr op="||" ><BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="io" seq="120" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<PlainVarRef><Symbol name="GETL_CALL" seq="22" /></PlainVarRef>
+</BinaryExpr>
+<BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="io" seq="120" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<PlainVarRef><Symbol name="GETI_CALL" seq="23" /></PlainVarRef>
+</BinaryExpr>
+</ShortCircuitExpr>
+<BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="io" seq="120" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<PlainVarRef><Symbol name="EXEC_CALL" seq="24" /></PlainVarRef>
+</BinaryExpr>
+</ShortCircuitExpr>
+<StmtsList><Asm Op="TRAP" ></Asm>
+<While><BinaryExpr op="ge" ><StructDeref><PlainVarRef><Symbol name="io" seq="120" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<IntExpr value="0" /></BinaryExpr>
+<Nop/></While>
+<VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="bp" seq="125" /></VarDecl>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="bp" seq="125" /></PlainVarRef>
+<Asm Op="PUSHREG" Op2="0" ></Asm>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><StructDeref><PlainVarRef><Symbol name="io" seq="120" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructDeref>
+<BinaryExpr op="+" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<PointerType><Symbol name="char*" seq="7" /></PointerType>
+<StructDeref><PlainVarRef><Symbol name="io" seq="120" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructDeref>
+<PlainVarRef><Symbol name="bp" seq="125" /></PlainVarRef>
+</BinaryExpr>
+</AssignExpr>
+</ExprStmt>
+</StmtsList>
+<StmtsList><Asm Op="TRAP" ></Asm>
+</StmtsList>
+</IfStmt>
+</StmtsList>
+<ExprStmt><AssignExpr><StructDeref><PlainVarRef><Symbol name="io" seq="120" /></PlainVarRef>
+<Symbol name="param2" seq="82" /></StructDeref>
+<UnaryExpr op="-" ><IntExpr value="1" /></UnaryExpr>
+</AssignExpr>
+</ExprStmt>
+</IfStmt>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="validate_args" seq="87" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+<Symbol name="io" seq="129" /></VarDecl>
+</DeclsList>
+<StmtsList><IfStmt><BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<PlainVarRef><Symbol name="EXIT_CALL" seq="17" /></PlainVarRef>
+</BinaryExpr>
+<Return><IntExpr value="0" /></Return>
+</IfStmt>
+<IfStmt><BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<PlainVarRef><Symbol name="PRINTS_CALL" seq="19" /></PlainVarRef>
+</BinaryExpr>
+<Return><FuncCall><PlainVarRef><Symbol name="check_limits" seq="89" /></PlainVarRef>
+<Params><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+</Params>
+</FuncCall>
+</Return>
+</IfStmt>
+<IfStmt><BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<PlainVarRef><Symbol name="GETI_CALL" seq="23" /></PlainVarRef>
+</BinaryExpr>
+<Return><FuncCall><PlainVarRef><Symbol name="check_limits" seq="89" /></PlainVarRef>
+<Params><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+</Params>
+</FuncCall>
+</Return>
+</IfStmt>
+<IfStmt><BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<PlainVarRef><Symbol name="GETL_CALL" seq="22" /></PlainVarRef>
+</BinaryExpr>
+<Return><FuncCall><PlainVarRef><Symbol name="check_limits" seq="89" /></PlainVarRef>
+<Params><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+</Params>
+</FuncCall>
+</Return>
+</IfStmt>
+<IfStmt><BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+<Symbol name="op" seq="80" /></StructDeref>
+<PlainVarRef><Symbol name="EXEC_CALL" seq="24" /></PlainVarRef>
+</BinaryExpr>
+<Return><FuncCall><PlainVarRef><Symbol name="check_limits" seq="89" /></PlainVarRef>
+<Params><PlainVarRef><Symbol name="io" seq="129" /></PlainVarRef>
+</Params>
+</FuncCall>
+</Return>
+</IfStmt>
+<Return><UnaryExpr op="-" ><IntExpr value="1" /></UnaryExpr>
+</Return>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="8" ><Symbol name="check_limits" seq="89" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="85" /></PointerType>
+<Symbol name="io" seq="135" /></VarDecl>
+</DeclsList>
+<StmtsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="lp" seq="136" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="bp" seq="137" /></VarDecl>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="lp" seq="136" /></PlainVarRef>
+<Asm Op="PUSHREG" Op2="1" ></Asm>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="bp" seq="137" /></PlainVarRef>
+<Asm Op="PUSHREG" Op2="0" ></Asm>
+</AssignExpr>
+</ExprStmt>
+<IfStmt><ShortCircuitExpr op="and" ><BinaryExpr op="gt" ><StructDeref><PlainVarRef><Symbol name="io" seq="135" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructDeref>
+<IntExpr value="0" /></BinaryExpr>
+<BinaryExpr op="lt" ><StructDeref><PlainVarRef><Symbol name="io" seq="135" /></PlainVarRef>
+<Symbol name="param1" seq="81" /></StructDeref>
+<BinaryExpr op="-" ><PlainVarRef><Symbol name="lp" seq="136" /></PlainVarRef>
+<PlainVarRef><Symbol name="bp" seq="137" /></PlainVarRef>
+</BinaryExpr>
+</BinaryExpr>
+</ShortCircuitExpr>
+<Return><IntExpr value="0" /></Return>
+</IfStmt>
+<Return><UnaryExpr op="-" ><IntExpr value="1" /></UnaryExpr>
+</Return>
+</StmtsList>
+</FuncDecl>
+</DeclsList>
+</Program>

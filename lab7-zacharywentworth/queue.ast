@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<Program>
+<compiled time="2017:6:2 5:58:6" />
+<DeclsList><Pragma name="once" /><Typedef><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="queue_t" seq="6" /></Typedef>
+<FuncDecl localsize="0" ><Symbol name="Q_Init" seq="7" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="size" seq="8" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="Q_Destroy" seq="9" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="q" seq="10" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="Q_Enqueue" seq="11" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="q" seq="12" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="data" seq="13" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="Q_Dequeue" seq="14" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="q" seq="15" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="Q_Elements" seq="16" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="q" seq="17" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<Pragma name="once" /><FuncDecl localsize="0" ><Symbol name="my_mem_init" seq="18" /><BaseDecl size="1" ><Symbol name="void" seq="4" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="ptr" seq="19" /></VarDecl>
+<VarDecl offset="-16" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="size" seq="20" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="my_malloc" seq="21" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="size" seq="22" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="my_free" seq="23" /><BaseDecl size="1" ><Symbol name="void" seq="4" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="ptr" seq="24" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="my_get_largest" seq="25" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="int*" seq="26" /></PointerType>
+<Symbol name="size" seq="27" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="my_set_limit" seq="28" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="base" seq="29" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="limit" seq="30" /></VarDecl>
+</DeclsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="my_validate" seq="31" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="my_print_mem" seq="32" /><BaseDecl size="1" ><Symbol name="void" seq="4" /></BaseDecl>
+</FuncDecl>
+<Typedef><StructType><Symbol name="$$unnamed_struct_1" seq="33" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="head" seq="34" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="tail" seq="35" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="max" seq="36" /></VarDecl>
+<VarDecl offset="12" ><ArrayType Size="1" ><Symbol name="void*[1]" seq="38" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+</ArrayType>
+<Symbol name="data" seq="37" /><IntExpr value="1" /></VarDecl>
+</DeclsList>
+</StructType>
+<Symbol name="q_imp_t" seq="39" /></Typedef>
+<FuncDecl localsize="4" ><Symbol name="Q_Init" seq="7" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="size" seq="40" /></VarDecl>
+</DeclsList>
+<StmtsList><VarDecl offset="0" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<Symbol name="queue" seq="42" /></VarDecl>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="queue" seq="42" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<FuncCall><PlainVarRef><Symbol name="my_malloc" seq="21" /></PlainVarRef>
+<Params><BinaryExpr op="+" ><Sizeof><StructType><Symbol name="$$unnamed_struct_1" seq="33" /><DeclsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="head" seq="34" /></VarDecl>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="tail" seq="35" /></VarDecl>
+<VarDecl offset="8" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="max" seq="36" /></VarDecl>
+<VarDecl offset="12" ><ArrayType Size="1" ><Symbol name="void*[1]" seq="38" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+</ArrayType>
+<Symbol name="data" seq="37" /><IntExpr value="1" /></VarDecl>
+</DeclsList>
+</StructType>
+</Sizeof>
+<BinaryExpr op="*" ><BinaryExpr op="-" ><PlainVarRef><Symbol name="size" seq="40" /></PlainVarRef>
+<IntExpr value="1" /></BinaryExpr>
+<Sizeof><PointerType><Symbol name="void*" seq="5" /></PointerType>
+</Sizeof>
+</BinaryExpr>
+</BinaryExpr>
+</Params>
+</FuncCall>
+</AssignExpr>
+</ExprStmt>
+<IfStmt><BinaryExpr op="!=" ><PlainVarRef><Symbol name="queue" seq="42" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<IntExpr value="0" /></BinaryExpr>
+<StmtsList><ExprStmt><AssignExpr><StructDeref><PlainVarRef><Symbol name="queue" seq="42" /></PlainVarRef>
+<Symbol name="head" seq="34" /></StructDeref>
+<IntExpr value="0" /></AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><StructDeref><PlainVarRef><Symbol name="queue" seq="42" /></PlainVarRef>
+<Symbol name="tail" seq="35" /></StructDeref>
+<IntExpr value="0" /></AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><StructDeref><PlainVarRef><Symbol name="queue" seq="42" /></PlainVarRef>
+<Symbol name="max" seq="36" /></StructDeref>
+<PlainVarRef><Symbol name="size" seq="40" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+</StmtsList>
+</IfStmt>
+<Return><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<PlainVarRef><Symbol name="queue" seq="42" /></PlainVarRef>
+</Return>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="0" ><Symbol name="Q_Destroy" seq="9" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="q" seq="46" /></VarDecl>
+</DeclsList>
+<StmtsList><IfStmt><BinaryExpr op="==" ><PlainVarRef><Symbol name="q" seq="46" /></PlainVarRef>
+<IntExpr value="0" /></BinaryExpr>
+<Return><UnaryExpr op="-" ><IntExpr value="1" /></UnaryExpr>
+</Return>
+</IfStmt>
+<ExprStmt><FuncCall><PlainVarRef><Symbol name="my_free" seq="23" /></PlainVarRef>
+<Params><PlainVarRef><Symbol name="q" seq="46" /></PlainVarRef>
+</Params>
+</FuncCall>
+</ExprStmt>
+<Return><IntExpr value="0" /></Return>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="8" ><Symbol name="Q_Enqueue" seq="11" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="q" seq="47" /></VarDecl>
+<VarDecl offset="-16" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="data" seq="48" /></VarDecl>
+</DeclsList>
+<StmtsList><IfStmt><BinaryExpr op="==" ><PlainVarRef><Symbol name="q" seq="47" /></PlainVarRef>
+<IntExpr value="0" /></BinaryExpr>
+<Return><UnaryExpr op="-" ><IntExpr value="1" /></UnaryExpr>
+</Return>
+</IfStmt>
+<VarDecl offset="0" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<Symbol name="queue" seq="49" /></VarDecl>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="queue" seq="49" /></PlainVarRef>
+<PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<PlainVarRef><Symbol name="q" seq="47" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<VarDecl offset="4" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="head" seq="50" /></VarDecl>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="head" seq="50" /></PlainVarRef>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="49" /></PlainVarRef>
+<Symbol name="head" seq="34" /></StructDeref>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="head" seq="50" /></PlainVarRef>
+<BinaryExpr op="%" ><BinaryExpr op="+" ><PlainVarRef><Symbol name="head" seq="50" /></PlainVarRef>
+<IntExpr value="1" /></BinaryExpr>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="49" /></PlainVarRef>
+<Symbol name="max" seq="36" /></StructDeref>
+</BinaryExpr>
+</AssignExpr>
+</ExprStmt>
+<IfStmt><BinaryExpr op="==" ><PlainVarRef><Symbol name="head" seq="50" /></PlainVarRef>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="49" /></PlainVarRef>
+<Symbol name="tail" seq="35" /></StructDeref>
+</BinaryExpr>
+<Return><UnaryExpr op="-" ><IntExpr value="2" /></UnaryExpr>
+</Return>
+</IfStmt>
+<ExprStmt><AssignExpr><ArrayRef><StructDeref><PlainVarRef><Symbol name="queue" seq="49" /></PlainVarRef>
+<Symbol name="data" seq="37" /></StructDeref>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="49" /></PlainVarRef>
+<Symbol name="head" seq="34" /></StructDeref>
+<PointerType><Symbol name="void*" seq="5" /></PointerType>
+</ArrayRef>
+<PlainVarRef><Symbol name="data" seq="48" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+<ExprStmt><AssignExpr><StructDeref><PlainVarRef><Symbol name="queue" seq="49" /></PlainVarRef>
+<Symbol name="head" seq="34" /></StructDeref>
+<PlainVarRef><Symbol name="head" seq="50" /></PlainVarRef>
+</AssignExpr>
+</ExprStmt>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="8" ><Symbol name="Q_Dequeue" seq="14" /><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="q" seq="53" /></VarDecl>
+</DeclsList>
+<StmtsList><IfStmt><BinaryExpr op="==" ><PlainVarRef><Symbol name="q" seq="53" /></PlainVarRef>
+<IntExpr value="0" /></BinaryExpr>
+<Return><IntExpr value="0" /></Return>
+</IfStmt>
+<VarDecl offset="0" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<Symbol name="queue" seq="54" /><PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<PlainVarRef><Symbol name="q" seq="53" /></PlainVarRef>
+</VarDecl>
+<IfStmt><BinaryExpr op="==" ><StructDeref><PlainVarRef><Symbol name="queue" seq="54" /></PlainVarRef>
+<Symbol name="head" seq="34" /></StructDeref>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="54" /></PlainVarRef>
+<Symbol name="tail" seq="35" /></StructDeref>
+</BinaryExpr>
+<Return><IntExpr value="0" /></Return>
+</IfStmt>
+<VarDecl offset="4" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="item" seq="57" /><ArrayRef><StructDeref><PlainVarRef><Symbol name="queue" seq="54" /></PlainVarRef>
+<Symbol name="data" seq="37" /></StructDeref>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="54" /></PlainVarRef>
+<Symbol name="tail" seq="35" /></StructDeref>
+<PointerType><Symbol name="void*" seq="5" /></PointerType>
+</ArrayRef>
+</VarDecl>
+<ExprStmt><AssignExpr><StructDeref><PlainVarRef><Symbol name="queue" seq="54" /></PlainVarRef>
+<Symbol name="tail" seq="35" /></StructDeref>
+<BinaryExpr op="%" ><BinaryExpr op="+" ><StructDeref><PlainVarRef><Symbol name="queue" seq="54" /></PlainVarRef>
+<Symbol name="tail" seq="35" /></StructDeref>
+<IntExpr value="1" /></BinaryExpr>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="54" /></PlainVarRef>
+<Symbol name="max" seq="36" /></StructDeref>
+</BinaryExpr>
+</AssignExpr>
+</ExprStmt>
+<Return><PlainVarRef><Symbol name="item" seq="57" /></PlainVarRef>
+</Return>
+</StmtsList>
+</FuncDecl>
+<FuncDecl localsize="8" ><Symbol name="Q_Elements" seq="16" /><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<DeclsList><VarDecl offset="-12" ><PointerType><Symbol name="void*" seq="5" /></PointerType>
+<Symbol name="q" seq="63" /></VarDecl>
+</DeclsList>
+<StmtsList><VarDecl offset="0" ><BaseDecl size="4" ><Symbol name="int" seq="3" /></BaseDecl>
+<Symbol name="num" seq="64" /></VarDecl>
+<VarDecl offset="4" ><PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<Symbol name="queue" seq="65" /><PointerType><Symbol name="$$unnamed_struct_1*" seq="41" /></PointerType>
+<PlainVarRef><Symbol name="q" seq="63" /></PlainVarRef>
+</VarDecl>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="num" seq="64" /></PlainVarRef>
+<BinaryExpr op="-" ><StructDeref><PlainVarRef><Symbol name="queue" seq="65" /></PlainVarRef>
+<Symbol name="head" seq="34" /></StructDeref>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="65" /></PlainVarRef>
+<Symbol name="tail" seq="35" /></StructDeref>
+</BinaryExpr>
+</AssignExpr>
+</ExprStmt>
+<IfStmt><BinaryExpr op="lt" ><PlainVarRef><Symbol name="num" seq="64" /></PlainVarRef>
+<IntExpr value="0" /></BinaryExpr>
+<ExprStmt><AssignExpr><PlainVarRef><Symbol name="num" seq="64" /></PlainVarRef>
+<BinaryExpr op="+" ><PlainVarRef><Symbol name="num" seq="64" /></PlainVarRef>
+<StructDeref><PlainVarRef><Symbol name="queue" seq="65" /></PlainVarRef>
+<Symbol name="max" seq="36" /></StructDeref>
+</BinaryExpr>
+</AssignExpr>
+</ExprStmt>
+</IfStmt>
+<Return><PlainVarRef><Symbol name="num" seq="64" /></PlainVarRef>
+</Return>
+</StmtsList>
+</FuncDecl>
+</DeclsList>
+</Program>
