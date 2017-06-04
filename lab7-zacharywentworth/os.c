@@ -72,8 +72,10 @@ int startup__()
     *timerLimit = INTERVAL_COUNT;
 
     sched_exec("user3.slb");
-
-    while(1) {}   
+    
+    int i;
+    for(i = 0; i < INTERVAL_COUNT; i++) {}
+    asm("HALT");
 }
 
 /****************************************************************************
@@ -109,7 +111,7 @@ void my_trap_routine(io_blk_t* io) {
 
     /* call asm based on op passed in io */
     if ( io->op == PRINTS_CALL ) {
-        asm("OUTS", io->param1);
+        asm("INP", io);
         io->param2 = 0;
     }
     else if ( io->op == GETI_CALL) {
@@ -122,12 +124,23 @@ void my_trap_routine(io_blk_t* io) {
     }
     else if(io->op == EXEC_CALL) {
         sched_exec(io->param1);
-        io->op |= 0x8000000;
+        io->op |= 0x80000000;
         io->param2 = 0;
     }
     else if ( io->op == EXIT_CALL ) {
         sched_exit(os_isr);
         io->param2 = 0;
+    }
+    else if (io->op == YIELD_CALL ){
+        sched_yield(os_isr);
+        io->param2 = 0;
+    }
+    else if (io->op == SLEEP_CALL) {
+        sched_sleep(os_isr, io->param1);
+        io->param2 = 0;
+    }
+    else if (io->op == TIME_CALL) {
+        io->param2 = *((int*)TIMER_TIME);
     }
     else {
         io->param2 = -1;
@@ -158,6 +171,9 @@ void systrap(io_blk_t* io) {
 ****************************************************************************/
 int validate_args(io_blk_t* io) {
     if( io->op == EXIT_CALL ) return 0;
+    if( io->op == YIELD_CALL ) return 0;
+    if( io->op == SLEEP_CALL && io->param1 > 0) return 0;
+    if( io->op == TIME_CALL) return 0;
     if( io->op == PRINTS_CALL ) return check_limits(io);
     if( io->op == GETI_CALL)  return check_limits(io);
     if( io->op == EXEC_CALL) return check_limits(io);

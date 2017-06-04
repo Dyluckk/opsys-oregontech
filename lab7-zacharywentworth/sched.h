@@ -26,3 +26,5 @@ void timer_isr();
 static void preemptive(isr_call_frame_t* isr);
 static pcb_t* next_process();
 void sched_exit(isr_call_frame_t* isr);
+void sched_yield(isr_call_frame_t* isr);
+void sched_sleep(isr_call_frame_t* isr, int dur);

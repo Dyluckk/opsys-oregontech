@@ -14,6 +14,6 @@ int main() {
     exec("user.slb");
     exec("user2.slb");
 
-    while(1) {}    
+    halt();
     return 0;
 }

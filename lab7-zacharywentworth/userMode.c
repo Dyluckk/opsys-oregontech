@@ -13,13 +13,7 @@
 #include <syscodes.h>
 #include <machine_def.h>
 #include <string.h>
-
-/* args required by syscalls */
-typedef struct {
-    int op;
-    int param1;
-    int param2;
-} io_blk_t;
+#include "ioBlock.h"
 
 void syscall(io_blk_t* io);
 int validate_args(io_blk_t* io);
@@ -112,13 +106,44 @@ int halt() {
     io.op = EXIT_CALL;
 
     syscall(&io);
+
+    return io.param2;
 }
 
 
 int exec(char* filename) {
     io_blk_t io;
-    io.op = EXIT_CALL;
+    io.op = EXEC_CALL;
     io.param1 = (int)filename;
+
+    syscall(&io);
+
+    return io.param2;
+}
+
+int yield() {
+    io_blk_t io;
+    io.op = YIELD_CALL;
+
+    syscall(&io);
+
+    return io.param2;
+}
+
+int sleep(int dur) {
+    io_blk_t io;
+    io.op = SLEEP_CALL;
+
+    io.param1 = dur;
+
+    syscall(&io);
+
+    return io.param2;
+}
+
+int get_time() {
+    io_blk_t io;
+    io.op = TIME_CALL;
 
     syscall(&io);
 
@@ -134,9 +159,12 @@ int exec(char* filename) {
 void syscall(io_blk_t* io) {
     if( validate_args(io) == 0 ) {
         /* if input op */
-        if( io->op == GETL_CALL || io->op == GETI_CALL || io->op == EXEC_CALL) {
+        if( io->op == GETL_CALL || io->op == GETI_CALL || io->op == EXEC_CALL
+                || io->op == PRINTS_CALL ) { 
             asm("TRAP");
-            while(io->op >= 0);
+            while(io->op >= 0) { 
+                yield(); 
+            }
             /* reset ptr to user mode */
             int bp;
             bp = asm2("PUSHREG", BP_REG);
@@ -159,11 +187,14 @@ void syscall(io_blk_t* io) {
 ****************************************************************************/
 int validate_args(io_blk_t* io) {
     if( io->op == EXIT_CALL ) return 0;
+    if( io->op == YIELD_CALL ) return 0;
+    if( io->op == SLEEP_CALL && io->param1 > 0 ) return 0;
+    if( io->op == TIME_CALL) return 0;
     if( io->op == PRINTS_CALL ) return check_limits(io);
     if( io->op == GETI_CALL)  return check_limits(io);
     if( io->op == GETL_CALL ) return check_limits(io);
     if( io->op == EXEC_CALL ) return check_limits(io);
-
+    
     return -1;
 }
 

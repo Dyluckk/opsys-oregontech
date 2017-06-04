@@ -155,3 +155,20 @@ void sched_exit(isr_call_frame_t* isr) {
         my_free((void*)temp);
     } 
 }
+
+void sched_yield(isr_call_frame_t* isr) {
+    if(g_pcb != &os_pcb) {
+        Q_Enqueue(processes, (void*)g_pcb);
+    }
+
+    preemptive(isr);
+}
+
+void sched_sleep(isr_call_frame_t* isr, int dur) {
+    int total = dur + *((int*)TIMER_TIME);
+    g_pcb->wakeup = total;
+
+    Q_Enqueue(processes, (void*)g_pcb);
+    preemptive(isr);
+}
+

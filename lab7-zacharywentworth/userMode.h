@@ -12,4 +12,7 @@ int printi(int value);
 int geti();
 int gets(char *buff);
 int halt();
+int yield();
 int exec(char* filename);
+int sleep(int dur);
+int get_time();

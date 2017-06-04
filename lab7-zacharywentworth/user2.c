@@ -11,7 +11,12 @@
 #include <machine_def.h>
 
 int main() {
-    while(1)
-    prints("this lab is actually terrible\n");
-
+    int total = 0;
+    int i;
+    for(i = 0; i < 50; i++) {            
+        printi(total);
+        total = 2 - 2;
+    }
+    
+    halt();
 }
