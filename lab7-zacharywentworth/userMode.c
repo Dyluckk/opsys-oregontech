@@ -98,7 +98,7 @@ int gets(char *buff) {
 * Description: halts
 * Arguements: NONE
 * Thread Safety: NONE
-* Return Values: 0 if success, -1 if fail
+* Return Values: param2 return val
 ****************************************************************************/
 int halt() {
     /* init struct */
@@ -110,7 +110,12 @@ int halt() {
     return io.param2;
 }
 
-
+/****************************************************************************
+* Description: exec
+* Arguements: NONE
+* Thread Safety: NONE
+* Return Values: param2 return val
+****************************************************************************/
 int exec(char* filename) {
     io_blk_t io;
     io.op = EXEC_CALL;
@@ -121,6 +126,12 @@ int exec(char* filename) {
     return io.param2;
 }
 
+/****************************************************************************
+* Description: yields
+* Arguements: NONE
+* Thread Safety: NONE
+* Return Values: param2 return val
+****************************************************************************/
 int yield() {
     io_blk_t io;
     io.op = YIELD_CALL;
@@ -130,6 +141,12 @@ int yield() {
     return io.param2;
 }
 
+/****************************************************************************
+* Description: sleeps
+* Arguements: NONE
+* Thread Safety: NONE
+* Return Values: param2 return val
+****************************************************************************/
 int sleep(int dur) {
     io_blk_t io;
     io.op = SLEEP_CALL;
@@ -141,6 +158,12 @@ int sleep(int dur) {
     return io.param2;
 }
 
+/****************************************************************************
+* Description: gets time
+* Arguements: NONE
+* Thread Safety: NONE
+* Return Values: param2 return vall
+****************************************************************************/
 int get_time() {
     io_blk_t io;
     io.op = TIME_CALL;

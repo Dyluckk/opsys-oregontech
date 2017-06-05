@@ -97,6 +97,12 @@ int sched_exec(char *filename) {
     my_set_limit((int*)pcb->isr.BP, (int*)pcb->isr.LP);
 }
 
+/****************************************************************************
+ * Description: set up and queue timer interrupt
+ * Arguements: NONE
+ * Thread Safety: NONE
+ * Return Values: NONE
+ ****************************************************************************/
 void timer_isr() {
     g_isr = asm2("PUSHREG", SP_REG);
     g_isr--;
@@ -110,6 +116,12 @@ void timer_isr() {
     asm("RTI");
 }
 
+/****************************************************************************
+ * Description: preemptive behaviour
+ * Arguements: NONE
+ * Thread Safety: NONE
+ * Return Values: NONE
+ ****************************************************************************/
 void preemptive(isr_call_frame_t* isr) {
     g_pcb->isr.BP = isr->BP;
     g_pcb->isr.SP = isr->SP;
@@ -129,6 +141,12 @@ void preemptive(isr_call_frame_t* isr) {
     isr->FLAG = g_pcb->isr.FLAG;
 }
 
+/****************************************************************************
+ * Description: find an open process
+ * Arguements: NONE
+ * Thread Safety: NONE
+ * Return Values: NONE
+ ****************************************************************************/
 static pcb_t* next_process() {
     pcb_t* pcb_temp;
 
@@ -144,6 +162,12 @@ static pcb_t* next_process() {
     return pcb_temp;
 }
 
+/****************************************************************************
+ * Description: schedule an exit
+ * Arguements: NONE
+ * Thread Safety: NONE
+ * Return Values: NONE
+ ****************************************************************************/
 void sched_exit(isr_call_frame_t* isr) {
     pcb_t *temp = g_pcb;
 
@@ -156,6 +180,12 @@ void sched_exit(isr_call_frame_t* isr) {
     } 
 }
 
+/****************************************************************************
+ * Description: schedule a yield
+ * Arguements: NONE
+ * Thread Safety: NONE
+ * Return Values: NONE
+ ****************************************************************************/
 void sched_yield(isr_call_frame_t* isr) {
     if(g_pcb != &os_pcb) {
         Q_Enqueue(processes, (void*)g_pcb);
@@ -164,6 +194,12 @@ void sched_yield(isr_call_frame_t* isr) {
     preemptive(isr);
 }
 
+/****************************************************************************
+ * Description: schedule a sleep
+ * Arguements: NONE
+ * Thread Safety: NONE
+ * Return Values: NONE
+ ****************************************************************************/
 void sched_sleep(isr_call_frame_t* isr, int dur) {
     int total = dur + *((int*)TIMER_TIME);
     g_pcb->wakeup = total;

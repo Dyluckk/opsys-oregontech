@@ -9,7 +9,6 @@
 ****************************************************************************/
 #pragma feature inp
 #pragma startup startup__
-//#pragma systrap systrap
 
 #include <syscodes.h>
 #include <machine_def.h>
@@ -31,7 +30,6 @@ int validate_args(io_blk_t* io);
 int check_limits(io_blk_t* io);
 void systrap(io_blk_t *io);
 
-
 int g_I_Vectors[16];
 
 isr_call_frame_t* os_isr;
@@ -47,7 +45,6 @@ int startup__()
     int base;
     int limit;
     int size;
-
 
     /* init mem manager */
     base = asm2("PUSHREG", SP_REG);
